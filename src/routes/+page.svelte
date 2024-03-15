@@ -8,8 +8,16 @@
        todos=todos
        console.log(todos)
     }
+    function btnclose(){
+        todos.pop()
+        todos=todos
+    }
+   
+    
     
 </script>
+
+
 
 
 <div class="todos">
@@ -17,10 +25,11 @@
          <div class=todo>
             <input  value={todo.text} type="text"/>
             <input value={todo.done} type="checkbox"/>
+            <button class="btn-close"on:click={btnclose}>&times;</button>
             
         </div>
     {/each}
-    <button on:click={addtodo}>Add</button>
+    <button on:click|preventDefault={addtodo}>Add</button>
 </div>
 
 
@@ -29,17 +38,28 @@
         display: grid;
         gap:1rem;
         margin-block-start: 1rem;
-        position: absolute;
-       
+        position: absolute; 
     }
+   
+    .btn-close{
+        background: transparent;
+        position:relative;
+        right:20% ;
+        bottom: 20%;
+        border: 0;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
     button{
         width: 40px;
-        padding: 2px;
+        padding: 2px;  
     }
+
     input[type="text"]{
-        padding:1rem;
-        
+        padding:1rem;  
     }
+
     input[type="checkbox"]{
         position:relative;
         right:20%;
