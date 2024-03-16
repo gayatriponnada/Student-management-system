@@ -1,25 +1,28 @@
-<script>
+
+<script lang="ts">
 	
-
     let todos=[{text:"Todo1", done:false},{text:"Todo2", done:false}]
+    let task=""
 
-    function addtodo(){
-       todos.push({text:`Todo${todos.length+1}`,done:false})
-       todos=todos
-       console.log(todos)
+    function addtodo(event:MouseEvent){
+        let name={text:task, done: false}
+        todos= [...todos, name]
+        task=""
+        // todos.push({text:`Todo${todos.length+1}`,done:false})
+        // todos=todos
+        // console.log(todos)
     }
+    
+    
+    
     function btnclose(){
         todos.pop()
         todos=todos
     }
-   
-    
     
 </script>
-
-
-
-
+<h3>TODO APP</h3>
+<p>Make your wishlist</p>
 <div class="todos">
     {#each todos as todo, i}
          <div class=todo>
@@ -29,12 +32,24 @@
             
         </div>
     {/each}
+
+    <input bind:value={task} type="text"/>
     <button on:click|preventDefault={addtodo}>Add</button>
+    
+    
 </div>
 
-
 <style>
+
+    h3{
+        text-align: center;
+    }
+    p{
+        text-align: center;
+        font-size: small;
+    }
     .todos{
+        margin-left: 20px;
         display: grid;
         gap:1rem;
         margin-block-start: 1rem;
