@@ -4,7 +4,7 @@
     let todos=[{text:"Todo1", done:false},{text:"Todo2", done:false}]
     let task=""
 
-    function addtodo(event:MouseEvent){
+    function addtodo(){
         let name={text:task, done: false}
         todos= [...todos, name]
         task=""
