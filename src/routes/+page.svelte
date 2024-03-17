@@ -4,16 +4,17 @@
     let todos=[{text:"Todo1", done:false},{text:"Todo2", done:false}]
     let task=""
 
-    function addtodo(event:MouseEvent){
+    function addtodo(){
         let name={text:task, done: false}
         todos= [...todos, name]
         task=""
-        // todos.push({text:`Todo${todos.length+1}`,done:false})
-        // todos=todos
-        // console.log(todos)
     }
     
-    
+    function addelse(){
+         todos.push({text:`Todo${todos.length+1}`,done:false})
+         todos=todos
+         console.log(todos)
+    }
     
     function btnclose(){
         todos.pop()
@@ -33,11 +34,16 @@
         </div>
     {/each}
 
-    <input bind:value={task} type="text"/>
-    <button on:click|preventDefault={addtodo}>Add</button>
+    <input placeholder="Type your todo" bind:value={task} type="text"/>
+    <button class="type"on:click|preventDefault={addtodo}>Type</button>
     
+    {#if task==""}
+        <button class="addup" on:click|preventDefault={addelse}>Addup</button>
+
+    {/if}
     
 </div>
+
 
 <style>
 
@@ -66,8 +72,13 @@
         cursor: pointer;
     }
 
-    button{
-        width: 40px;
+    .type{
+        width: 45px;
+        padding: 2px; 
+    }
+
+    .addup{
+        width: 55px;
         padding: 2px;  
     }
 
