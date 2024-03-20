@@ -34,7 +34,7 @@
         </div>
     {/each}
 
-    <input placeholder="Type your todo" bind:value={task} type="text"/>
+    <input class="placeholder" placeholder="Type your todo" bind:value={task} type="text"/>
     <button class="type"on:click|preventDefault={addtodo}>Type</button>
     
     {#if task==""}
@@ -60,6 +60,7 @@
         gap:1rem;
         margin-block-start: 1rem;
         position: absolute; 
+        
     }
    
     .btn-close{
@@ -80,6 +81,13 @@
     .addup{
         width: 55px;
         padding: 2px;  
+    }
+    .placeholder:focus{
+        outline: none;
+    }
+    .placeholder:hover{
+        box-shadow: 10px 10px 10px rgba(20, 20, 20, 0.5);
+         border: none
     }
 
     input[type="text"]{
