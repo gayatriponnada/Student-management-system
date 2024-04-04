@@ -25,7 +25,6 @@
 		</div>
 	</form>
 	<ol>
-		<!-- <p class="text-center text-xl font-bold font-serif ml-2 mt-3">List of Data</p> -->
 		<Table.Root>
 			<TableCaption>Student Data</TableCaption>
 			<Table.Header>
@@ -42,7 +41,7 @@
 						<div>
 							<Table.Body>
 								<Table.Row>
-									<Table.Cell class="font-medium]">{id}</Table.Cell>
+									<Table.Cell class="font-medium">{id}</Table.Cell>
 									<Table.Cell class="text-center">{name}</Table.Cell>
 									<Table.Cell>{marks}</Table.Cell>
 									<Table.Cell class="text-right ">{email}</Table.Cell>

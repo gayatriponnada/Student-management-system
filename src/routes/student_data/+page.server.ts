@@ -9,6 +9,7 @@ import type { PageServerLoad, Actions } from "./$types";
 export const load = (async ({ request, url }) => {
 	const sort = url.searchParams.get('sort');
 	const search = url.searchParams.get('search');
+
 	if (sort) {
 		const students = await db.select().from(student).orderBy(desc(student.marks));
 		return {

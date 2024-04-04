@@ -6,6 +6,7 @@
 	});
 
 	let student: Student[] = [];
+	let id = '';
 	let name = '';
 	let email = '';
 	let marks = 0;
@@ -24,8 +25,9 @@
 		} else if (!nameRegex.test(name)) {
 			alert('Please enter a valid name');
 		} else {
-			student.push({ name, marks, email });
+			student.push({ id, name, marks, email });
 			student = student;
+			id = '';
 			name = '';
 			email = '';
 			marks = 0;
