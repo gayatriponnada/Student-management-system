@@ -6,7 +6,7 @@ import { student } from "$lib/server/schema";
 import type { PageServerLoad, Actions } from "./$types";
 // import type { Student } from "./type";
 
-export const load = (async ({ request, url }) => {
+export const load = (async ({ url }) => {
 	const sort = url.searchParams.get('sort');
 	const search = url.searchParams.get('search');
 
@@ -17,9 +17,7 @@ export const load = (async ({ request, url }) => {
 		};
 	}
 	if (search) {
-		const data = await request.formData();
-		const nameToSearch = data.get('text') as string;
-		const students = await db.select().from(student).where(eq(student.name, nameToSearch));
+		const students = await db.select().from(student).where(eq(student.name, search));
 		return { students };
 	}
 
@@ -65,20 +63,7 @@ export const actions = {
 	// student.sort((a, b) => a.name.localeCompare(b.name));
 	// cookies.set('student', JSON.stringify(student), { path: '/' });
 
-	search: async ({ request }) => {
-		const data = await request.formData();
-		const nameToSearch = data.get('text') as string;
-		const result = await db.select().from(student).where(eq(student.name, nameToSearch));
-		if (result) {
-			return {
-				found: result
-			};
-		} else {
-			return {
-				found: "Student not found"
-			};
-		}
-	},
+
 	// 	const cookie = cookies.get('student');
 	// 	const student = cookie ? JSON.parse(cookie) as Student[] : [] as Student[];
 	// 	const foundStudent = student.find(student => student.name === nameToSearch);
@@ -96,7 +81,7 @@ export const actions = {
 
 	delete: async ({ request }) => {
 		const data = await request.formData();
-		const id = (data.get('text') as string);
+		const id = (data.get('id') as string);
 		await db.delete(student).where(eq(student.id, id));
 	},
 
