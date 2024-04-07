@@ -11,7 +11,15 @@ export const student = sqliteTable('student', {
 	email: text('email').notNull()
 
 });
+export const login = sqliteTable('login', {
+	id: text('id').primaryKey().$defaultFn(() => createId()),
+	email: text('email').notNull(),
+	password: text('password').notNull()
+});
 
 export type SelectStudent = InferSelectModel<typeof student>;
 export type CreateStudent = InferInsertModel<typeof student>;
+
+export type SelectLogin = InferSelectModel<typeof login>;
+export type CreateLogin = InferInsertModel<typeof login>;
 

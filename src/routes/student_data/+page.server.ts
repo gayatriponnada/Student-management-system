@@ -1,5 +1,5 @@
 import { db } from "$lib/server";
-import { desc } from 'drizzle-orm';
+import { asc, desc } from 'drizzle-orm';
 import { eq } from 'drizzle-orm';
 import { student } from "$lib/server/schema";
 import type { PageServerLoad, Actions } from "./$types";
@@ -8,18 +8,43 @@ export const load = (async ({ url }) => {
 	const sort = url.searchParams.get('sort');
 	const search = url.searchParams.get('search');
 
+	// http://localhost:5173/student_data?sort=desc:marks&search=gayam
+
+	// sort -> desc:marks
+	// search -> gayam
+
 	if (sort) {
-		const students = await db.select().from(student).orderBy(desc(student.marks));
-		return {
-			students
-		};
+		const [type, column] = sort.split(':');
+		// type -> desc, column -> marks
+		if (column == "marks") {
+			const students = await db.select().from(student).orderBy(type == "desc" ? desc(student.marks) : asc(student.marks));
+			return {
+				students
+			};
+		}
+		// type -> desc, column -> name
+		if (column == 'name') {
+			const students = await db.select().from(student).orderBy(type == "asc" ? desc(student.name) : asc(student.name));
+			return {
+				students
+			};
+		}
+		// type -> desc, column -> email
+		if (column == 'email') {
+			const students = await db.select().from(student).orderBy(type == "desc" ? desc(student.email) : asc(student.email));
+			return {
+				students
+			};
+		}
 	}
 
+	// search -> gayam
 	if (search) {
 		const students = await db.select().from(student).where(eq(student.name, search));
 		return { students };
 	}
 
+	// no search no sort
 	const students = await db.select().from(student);
 	return {
 		students
@@ -36,7 +61,7 @@ export const actions = {
 		const nameRegex = /^[A-Za-z]+$/;
 		if (!name || !marks || !id || marks < 0 || marks > 100 || !nameRegex.test(name)) {
 			return {
-				message: "Please enter proper data"
+				message: "Please valid data"
 			};
 		}
 		await db.insert(student).values({
@@ -57,3 +82,6 @@ export const actions = {
 		await db.delete(student);
 	}
 } satisfies Actions;
+
+
+
