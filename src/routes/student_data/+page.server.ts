@@ -38,9 +38,11 @@ export const load = (async ({ url }) => {
 		}
 	}
 
+	console.log("Search: ", search);
 	// search -> gayam
 	if (search) {
 		const students = await db.select().from(student).where(eq(student.name, search));
+		console.log("St");
 		return { students };
 	}
 
@@ -58,12 +60,13 @@ export const actions = {
 		const name = data.get('text') as string;
 		const marks = parseInt(data.get('number') as string);
 		const email = data.get('email') as string;
-		const nameRegex = /^[A-Za-z]+$/;
-		if (!name || !marks || !id || marks < 0 || marks > 100 || !nameRegex.test(name)) {
+		const emailDuplicates = await db.select().from(student).where(eq(student.email, email));
+		if (emailDuplicates.length > 0) {
 			return {
-				message: "Please valid data"
+				message: "Email already exists"
 			};
 		}
+
 		await db.insert(student).values({
 			id,
 			name,
