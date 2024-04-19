@@ -4,7 +4,11 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { onMount } from 'svelte';
+	import { cn } from '$lib/utils';
 	export let form;
+	let nameError = '';
+	let passwordError = '';
+
 	$: emailError = form?.message || '';
 	onMount(() => {
 		setTimeout(() => {
@@ -24,7 +28,23 @@
 				<Card.Content class="grid gap-4">
 					<div class="grid gap-2">
 						<Label for="username">Username</Label>
-						<Input required class="username" type="text" placeholder="name" name="username" />
+						<Input
+							required
+							type="text"
+							placeholder="name"
+							name="username"
+							class={cn(nameError && ' text-destructive border-destructive')}
+							title="Please enter the student name"
+							on:change={(e) => {
+								const nameRegex = /^[A-Za-z]+$/;
+								if (e.currentTarget.value.length < 6 || !nameRegex.test(e.currentTarget.value)) {
+									nameError = 'Should contain at least 6 characters and enter the valid name';
+								} else {
+									nameError = '';
+								}
+							}}
+						/>
+						<p class=" text-sm text-destructive">{nameError}</p>
 					</div>
 					<div class="grid gap-2">
 						<Label for="email">Email</Label>
@@ -33,6 +53,7 @@
 							class="email"
 							type="email"
 							placeholder="m@example.com"
+							title="Please enter the email"
 							name="email"
 							on:change={(e) => {
 								const email = e.currentTarget.value;
@@ -49,11 +70,22 @@
 						<Label for="password">Password</Label>
 						<Input
 							required
-							class="password"
 							type="password"
 							name="password"
 							placeholder="Password"
+							class={cn(passwordError && ' text-destructive border-destructive')}
+							title="Please enter the password"
+							on:change={(e) => {
+								const passwordRegex =
+									/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+								if (!passwordRegex.test(e.currentTarget.value)) {
+									passwordError = 'Enter the valid password with at least 8 characters';
+								} else {
+									passwordError = '';
+								}
+							}}
 						/>
+						<p class=" text-sm text-destructive">{passwordError}</p>
 					</div>
 				</Card.Content>
 				<Card.Footer>
