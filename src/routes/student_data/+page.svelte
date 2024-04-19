@@ -38,8 +38,8 @@ flex flex-col gap-10 w-[90]"
 			<div class="grid grid-cols-6 gap-2 px-5">
 				<Input
 					type="text"
-					name="id"
-					placeholder="Student Id"
+					name="rollNumber"
+					placeholder="Student RollNumber"
 					required
 					title="Please fill the student id"
 				/>
@@ -139,7 +139,7 @@ flex flex-col gap-10 w-[90]"
 		<TableCaption class="bg-primary text-accent mt-0">Student Data</TableCaption>
 		<Table.Header class="bg-primary">
 			<Table.Row>
-				<Table.Head class="w-[100px] text-center text-accent">Student Id</Table.Head>
+				<Table.Head class="w-[100px] text-center text-accent">Student RollNumber</Table.Head>
 				<Table.Head class="text-center text-accent flex items-center space-x-1">
 					<a
 						class="flex items-center"
@@ -167,11 +167,11 @@ flex flex-col gap-10 w-[90]"
 				<Table.Head class="text-center text-accent"
 					><a
 						class="flex justify-center items-center"
-						href={sort == 'desc:name'
-							? '/student_data?sort=asc:name'
-							: '/student_data?sort=desc:name'}
+						href={sort == 'desc:email'
+							? '/student_data?sort=asc:email'
+							: '/student_data?sort=desc:email'}
 						><span>Email Id</span>
-						{#if sort == 'desc:name'}
+						{#if sort == 'desc:email'}
 							<ChevronsDownUp />
 						{:else}
 							<ChevronsUpDown />
@@ -183,9 +183,9 @@ flex flex-col gap-10 w-[90]"
 			</Table.Row>
 		</Table.Header>
 		<Table.Body>
-			{#each data.students as { id, name, marks, email }}
+			{#each data.students as { rollNumber, name, marks, email }}
 				<Table.Row>
-					<Table.Cell class="font-medium">{id}</Table.Cell>
+					<Table.Cell class="font-medium">{rollNumber}</Table.Cell>
 					<Table.Cell>{name}</Table.Cell>
 					<Table.Cell>{marks}</Table.Cell>
 					<Table.Cell class="text-center">{email}</Table.Cell>
@@ -194,7 +194,7 @@ flex flex-col gap-10 w-[90]"
 							<Button variant="ghost" type="submit">
 								<Delete />
 							</Button>
-							<input type="text" name="id" value={id} hidden />
+							<input type="text" name="rollNumber" value={rollNumber} hidden />
 						</form>
 					</Table.Cell>
 				</Table.Row>

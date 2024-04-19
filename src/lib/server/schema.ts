@@ -6,6 +6,7 @@ export const student = sqliteTable('student', {
 	id: text('id')
 		.primaryKey()
 		.$defaultFn(() => createId()),
+	rollNumber: text('rollnumber').notNull(),
 	name: text('title').notNull(),
 	marks: integer("marks").notNull(),
 	email: text('email').notNull()

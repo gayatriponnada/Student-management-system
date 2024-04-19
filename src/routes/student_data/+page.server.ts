@@ -6,6 +6,7 @@ import type { PageServerLoad, Actions } from "./$types";
 
 export const load = (async ({ url }) => {
 	const sort = url.searchParams.get('sort');
+	console.log(sort);
 	const search = url.searchParams.get('search');
 
 	// http://localhost:5173/student_data?sort=desc:marks&search=gayam
@@ -24,7 +25,7 @@ export const load = (async ({ url }) => {
 		}
 		// type -> desc, column -> name
 		if (column == 'name') {
-			const students = await db.select().from(student).orderBy(type == "asc" ? desc(student.name) : asc(student.name));
+			const students = await db.select().from(student).orderBy(type == "desc" ? desc(student.name) : asc(student.name));
 			return {
 				students
 			};
@@ -56,7 +57,7 @@ export const load = (async ({ url }) => {
 export const actions = {
 	add: async ({ request }) => {
 		const data = await request.formData();
-		const id = data.get('id') as string;
+		const rollNumber = data.get('rollNumber') as string;
 		const name = data.get('text') as string;
 		const marks = parseInt(data.get('number') as string);
 		const email = data.get('email') as string;
@@ -68,7 +69,7 @@ export const actions = {
 		}
 
 		await db.insert(student).values({
-			id,
+			rollNumber,
 			name,
 			marks,
 			email
@@ -77,8 +78,8 @@ export const actions = {
 
 	delete: async ({ request }) => {
 		const data = await request.formData();
-		const id = (data.get('id') as string);
-		await db.delete(student).where(eq(student.id, id));
+		const rollNumber = (data.get('rollNumber') as string);
+		await db.delete(student).where(eq(student.rollNumber, rollNumber));
 	},
 
 	delete_all: async () => {
