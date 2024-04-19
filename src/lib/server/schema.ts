@@ -14,6 +14,7 @@ export const student = sqliteTable('student', {
 });
 export const login = sqliteTable('login', {
 	id: text('id').primaryKey().$defaultFn(() => createId()),
+	username: text('username').notNull(),
 	email: text('email').notNull(),
 	password: text('password').notNull()
 });

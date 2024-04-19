@@ -3,6 +3,14 @@
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
+	import { onMount } from 'svelte';
+	export let form;
+	$: emailError = form?.message || '';
+	onMount(() => {
+		setTimeout(() => {
+			emailError = '';
+		}, 3000);
+	});
 </script>
 
 <div class="flex justify-center mx-auto">
@@ -16,21 +24,36 @@
 				<Card.Content class="grid gap-4">
 					<div class="grid gap-2">
 						<Label for="username">Username</Label>
-						<Input
-							required
-							id="username"
-							type="username"
-							placeholder="m@example.com"
-							name="email"
-						/>
+						<Input required class="username" type="text" placeholder="name" name="username" />
 					</div>
 					<div class="grid gap-2">
 						<Label for="email">Email</Label>
-						<Input required id="email" type="email" placeholder="m@example.com" name="email" />
+						<Input
+							required
+							class="email"
+							type="email"
+							placeholder="m@example.com"
+							name="email"
+							on:change={(e) => {
+								const email = e.currentTarget.value;
+								if (email.length <= 2) {
+									emailError = 'Email should be more than 2 characters';
+								} else {
+									emailError = '';
+								}
+							}}
+						/>
+						<p class=" text-sm text-destructive">{emailError}</p>
 					</div>
 					<div class="grid gap-2">
 						<Label for="password">Password</Label>
-						<Input required id="password" type="password" name="password" placeholder="Password" />
+						<Input
+							required
+							class="password"
+							type="password"
+							name="password"
+							placeholder="Password"
+						/>
 					</div>
 				</Card.Content>
 				<Card.Footer>
