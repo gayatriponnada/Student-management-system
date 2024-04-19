@@ -13,8 +13,8 @@
 	});
 </script>
 
-<div class="flex justify-center mx-auto">
-	<form method="post">
+<div class="flex justify-center py-8">
+	<form method="post" class="flex items-center">
 		<div class="mx-auto my-auto">
 			<Card.Root class="w-full max-w-sm   ">
 				<Card.Header>
