@@ -14,7 +14,6 @@ export const load = (async () => {
 export const actions = {
 
 	signIn: async ({ request, fetch }) => {
-
 		const data = await request.formData();
 		const email = data.get('email') as string;
 		const password = data.get('password') as string;
@@ -25,9 +24,6 @@ export const actions = {
 				message: "Email already exists"
 			};
 		}
-
-
-
 		await fetch("http://localhost:5000/login", {
 			method: "post",
 			headers: {
@@ -35,10 +31,6 @@ export const actions = {
 			},
 			body: JSON.stringify({ username, email, password }),
 		});
-
-
-
-
 		throw redirect(302, '/student_data');
 	}
 } satisfies Actions;

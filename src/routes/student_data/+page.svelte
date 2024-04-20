@@ -29,10 +29,7 @@
 	});
 </script>
 
-<main
-	class=" mt-5
-flex flex-col gap-10 w-[90]"
->
+<main class=" mt-5 flex flex-col gap-10 w-[90]">
 	<form action="?/add" method="post">
 		<div class=" mx-auto bg-secondary flex items-center rounded-md h-20 w-4/5">
 			<div class="grid grid-cols-6 gap-2 px-5">
