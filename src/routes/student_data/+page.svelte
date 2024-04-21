@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { createTable } from 'svelte-headless-table';
+	import { readable } from 'svelte/store';
 	import { page } from '$app/stores';
 	import { Button } from '$ui/button/index.js';
 	import { Input } from '$ui/input/index.js';
@@ -127,13 +129,12 @@
 				} else {
 					url.searchParams.delete('search');
 				}
-				goto(url.toString(), { replaceState: true });
+				goto(url.toString());
 			}}
 		/>
 	</div>
 
 	<Table.Root class="  bg-secondary  mx-auto w-4/5 ">
-		<TableCaption class="bg-primary text-accent mt-0">Student Data</TableCaption>
 		<Table.Header class="bg-primary">
 			<Table.Row>
 				<Table.Head class="w-[100px] text-center text-accent">Student RollNumber</Table.Head>
