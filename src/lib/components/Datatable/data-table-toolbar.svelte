@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { TableViewModel } from "svelte-headless-table";
-	import Cross2 from "svelte-radix/Cross2.svelte";
-	import type { Writable } from "svelte/store";
-	import { priorities, statuses } from "../(data)/data.js";
-	import type { Task } from "../(data)/schemas.js";
-	import { DataTableFacetedFilter, DataTableViewOptions } from "./index.js";
-	import Button from "$lib/registry/new-york/ui/button/button.svelte";
-	import { Input } from "$lib/registry/new-york/ui/input/index.js";
+	import type { TableViewModel } from 'svelte-headless-table';
+	import Cross2 from 'svelte-radix/Cross2.svelte';
+	import type { Writable } from 'svelte/store';
 
-	export let tableModel: TableViewModel<Task>;
-	export let data: Task[];
+	import type { SelectStudent } from '$lib/server/schema';
+	import { DataTableFacetedFilter, DataTableViewOptions } from './index.js';
+	import Button from '$ui/button/button.svelte';
+	import { Input } from '$ui/input/index.js';
+
+	export let tableModel: TableViewModel<SelectStudent>;
+	export let data: SelectStudent[];
 
 	const counts = data.reduce<{
 		status: { [index: string]: number };
@@ -22,19 +22,19 @@
 		},
 		{
 			status: {},
-			priority: {},
+			priority: {}
 		}
 	);
 
 	const { pluginStates } = tableModel;
 	const {
-		filterValue,
+		filterValue
 	}: {
 		filterValue: Writable<string>;
 	} = pluginStates.filter;
 
 	const {
-		filterValues,
+		filterValues
 	}: {
 		filterValues: Writable<{
 			status: string[];
@@ -69,7 +69,7 @@
 		{#if showReset}
 			<Button
 				on:click={() => {
-					$filterValue = "";
+					$filterValue = '';
 					$filterValues.status = [];
 					$filterValues.priority = [];
 				}}
