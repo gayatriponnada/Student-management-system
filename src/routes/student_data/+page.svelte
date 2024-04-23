@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { createTable } from 'svelte-headless-table';
 	import { readable } from 'svelte/store';
 	import { page } from '$app/stores';
@@ -15,14 +15,14 @@
 
 	export let data;
 	export let form;
-
+	const table = createTable(readable(data.students));
 	let nameError = '';
 	let marksError = '';
 	const nameRegex = /^[A-Za-z]+$/;
 
-	$: emailError = form?.message || '';
-	$: sort = $page.url.searchParams.get('sort');
-	$: search = $page.url.searchParams.get('search');
+	let emailError = form?.message || '';
+	let sort = $page.url.searchParams.get('sort');
+	let search = $page.url.searchParams.get('search');
 
 	onMount(() => {
 		setTimeout(() => {
@@ -51,7 +51,7 @@
 						placeholder="Student name"
 						required
 						title="Please enter the student name"
-						on:change={(e) => {
+						on:input={(e) => {
 							if (e.currentTarget.value.length < 6 || !nameRegex.test(e.currentTarget.value)) {
 								nameError = 'Should contain at least 6 characters and enter the valid name';
 							} else {
@@ -70,7 +70,7 @@
 						placeholder="Marks"
 						required
 						title="Please enter the  valid marks"
-						on:change={(e) => {
+						on:input={(e) => {
 							if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) > 100) {
 								marksError = 'Please enter the valid marks';
 							} else {
@@ -88,7 +88,7 @@
 						placeholder="Enter email address"
 						required
 						title="Please fill the valid email address"
-						on:change={(e) => {
+						on:input={(e) => {
 							const email = e.currentTarget.value;
 							if (email.length <= 2) {
 								emailError = 'Please enter the valid email ID';
@@ -124,6 +124,7 @@
 			on:input={(e) => {
 				const value = e.currentTarget.value;
 				const url = new URL(window.location.href);
+				console.log(url);
 				if (value.length > 0) {
 					url.searchParams.set('search', value);
 				} else {
@@ -199,4 +200,13 @@
 			{/each}
 		</Table.Body>
 	</Table.Root>
-</main>
+</main> -->
+
+<script lang="ts">
+	import DataTable from '$lib/components/Datatable/data-table.svelte';
+	export let data;
+</script>
+
+<div class="container mx-auto py-10">
+	<DataTable {data} />
+</div>

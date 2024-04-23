@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { priorities } from "../(data)/data.js";
 	export let value: string;
 	const priority = priorities.find((priority) => priority.value === value);
@@ -12,4 +12,4 @@
 		{/if}
 		<span>{priority.label}</span>
 	</div>
-{/if}
+{/if} -->

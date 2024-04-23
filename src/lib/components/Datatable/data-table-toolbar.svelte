@@ -11,20 +11,20 @@
 	export let tableModel: TableViewModel<SelectStudent>;
 	export let data: SelectStudent[];
 
-	const counts = data.reduce<{
-		status: { [index: string]: number };
-		priority: { [index: string]: number };
-	}>(
-		(acc, { status, priority }) => {
-			acc.status[status] = (acc.status[status] || 0) + 1;
-			acc.priority[priority] = (acc.priority[priority] || 0) + 1;
-			return acc;
-		},
-		{
-			status: {},
-			priority: {}
-		}
-	);
+	// const counts = data.reduce<{
+	// 	status: { [index: string]: number };
+	// 	priority: { [index: string]: number };
+	// }>(
+	// 	(acc, { status, priority }) => {
+	// 		acc.status[status] = (acc.status[status] || 0) + 1;
+	// 		acc.priority[priority] = (acc.priority[priority] || 0) + 1;
+	// 		return acc;
+	// 	},
+	// 	{
+	// 		status: {},
+	// 		priority: {}
+	// 	}
+	// );
 
 	const { pluginStates } = tableModel;
 	const {
@@ -54,7 +54,7 @@
 			bind:value={$filterValue}
 		/>
 
-		<DataTableFacetedFilter
+		<!-- <DataTableFacetedFilter
 			bind:filterValues={$filterValues.status}
 			title="Status"
 			options={statuses}
@@ -65,7 +65,7 @@
 			title="Priority"
 			options={priorities}
 			counts={counts.priority}
-		/>
+		/> -->
 		{#if showReset}
 			<Button
 				on:click={() => {

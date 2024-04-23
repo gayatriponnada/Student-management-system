@@ -1,11 +1,11 @@
 <script lang="ts">
-	import MixerHorizontal from "svelte-radix/MixerHorizontal.svelte";
-	import type { TableViewModel } from "svelte-headless-table";
-	import type { Task } from "../(data)/schemas.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import MixerHorizontal from 'svelte-radix/MixerHorizontal.svelte';
+	import type { TableViewModel } from 'svelte-headless-table';
+	import type { SelectStudent } from '$lib/server/schema';
+	import { Button } from '$ui/button/index.js';
+	import * as DropdownMenu from '$ui/dropdown-menu/index.js';
 
-	export let tableModel: TableViewModel<Task>;
+	export let tableModel: TableViewModel<SelectStudent>;
 	const { pluginStates, flatColumns } = tableModel;
 	const { hiddenColumnIds } = pluginStates.hide;
 
@@ -18,7 +18,7 @@
 		});
 	}
 
-	const hidableCols = ["title", "status", "priority"];
+	const hidableCols = ['title', 'status', 'priority'];
 </script>
 
 <DropdownMenu.Root>

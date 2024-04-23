@@ -4,10 +4,10 @@
 	import ArrowUp from 'svelte-radix/ArrowUp.svelte';
 	import CaretSort from 'svelte-radix/CaretSort.svelte';
 	import type { TableViewModel } from 'svelte-headless-table';
-	import type { Task } from '../(data)/schemas.js';
+	import type { SelectStudent } from '$lib/server/schema';
 	import { cn } from '$lib/utils.js';
 	import { Button } from '$ui/button/index.js';
-	import * as DropdownMenu from '$lib/registry/new-york/ui/dropdown-menu/index.js';
+	import * as DropdownMenu from '$ui/dropdown-menu/index.js';
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -21,7 +21,7 @@
 		};
 		filter: never;
 	};
-	export let tableModel: TableViewModel<Task>;
+	export let tableModel: TableViewModel<SelectStudent>;
 	export let cellId: string;
 
 	const { hiddenColumnIds } = tableModel.pluginStates.hide;

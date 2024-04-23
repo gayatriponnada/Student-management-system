@@ -1,12 +1,12 @@
 <script lang="ts">
-	import DotsHorizontal from "svelte-radix/DotsHorizontal.svelte";
-	import { labels } from "../(data)/data.js";
-	import { type Task, taskSchema } from "../(data)/schemas.js";
-	import { Button } from "$lib/registry/new-york/ui/button/index.js";
-	import * as DropdownMenu from "$lib/registry/new-york/ui/dropdown-menu/index.js";
+	import DotsHorizontal from 'svelte-radix/DotsHorizontal.svelte';
+	// import { labels } from "../(data)/data.js";
+	import { type SelectStudent } from '$lib/server/schema';
+	import { Button } from '$ui/button/index.js';
+	import * as DropdownMenu from '$ui/dropdown-menu/index.js';
 
-	export let row: Task;
-	const task = taskSchema.parse(row);
+	export let row: SelectStudent;
+	const task = row;
 </script>
 
 <DropdownMenu.Root>
@@ -28,13 +28,13 @@
 		<DropdownMenu.Sub>
 			<DropdownMenu.SubTrigger>Labels</DropdownMenu.SubTrigger>
 			<DropdownMenu.SubContent>
-				<DropdownMenu.RadioGroup value={task.label}>
+				<!-- <DropdownMenu.RadioGroup value={task.label}>
 					{#each labels as label}
 						<DropdownMenu.RadioItem value={label.value}>
 							{label.label}
 						</DropdownMenu.RadioItem>
 					{/each}
-				</DropdownMenu.RadioGroup>
+				</DropdownMenu.RadioGroup> -->
 			</DropdownMenu.SubContent>
 		</DropdownMenu.Sub>
 		<DropdownMenu.Separator />

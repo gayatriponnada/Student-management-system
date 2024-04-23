@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { statuses } from "../(data)/data.js";
 
 	export let value: string;
@@ -13,4 +13,4 @@
 		{/if}
 		<span>{status.label}</span>
 	</div>
-{/if}
+{/if} -->

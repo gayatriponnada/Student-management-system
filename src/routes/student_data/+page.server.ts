@@ -6,7 +6,6 @@ import type { PageServerLoad, Actions } from "./$types";
 
 export const load = (async ({ url }) => {
 	const sort = url.searchParams.get('sort');
-	console.log(sort);
 	const search = url.searchParams.get('search');
 
 	// http://localhost:5173/student_data?sort=desc:marks&search=gayam
@@ -43,7 +42,6 @@ export const load = (async ({ url }) => {
 	// search -> gayam
 	if (search) {
 		const students = await db.select().from(student).where(eq(student.name, search));
-		console.log("St");
 		return { students };
 	}
 
