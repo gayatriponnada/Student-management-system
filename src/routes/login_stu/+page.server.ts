@@ -1,6 +1,6 @@
 import type { PageServerLoad, Actions } from "./$types";
-import { db } from "$lib/server";
-import { login } from "$lib/server/schema";
+import { db } from "$lib/database";
+import { login } from "$lib/database/schema";
 import { eq } from 'drizzle-orm';
 import { redirect } from "@sveltejs/kit";
 

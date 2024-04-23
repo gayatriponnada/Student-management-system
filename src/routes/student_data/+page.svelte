@@ -1,6 +1,5 @@
-<!-- <script lang="ts">
-	import { createTable } from 'svelte-headless-table';
-	import { readable } from 'svelte/store';
+<script lang="ts">
+	import DataTable from '$lib/components/Datatable/data-table.svelte';
 	import { page } from '$app/stores';
 	import { Button } from '$ui/button/index.js';
 	import { Input } from '$ui/input/index.js';
@@ -15,14 +14,14 @@
 
 	export let data;
 	export let form;
-	const table = createTable(readable(data.students));
+
 	let nameError = '';
 	let marksError = '';
 	const nameRegex = /^[A-Za-z]+$/;
 
 	let emailError = form?.message || '';
-	let sort = $page.url.searchParams.get('sort');
-	let search = $page.url.searchParams.get('search');
+	// $: sort = $page.url.searchParams.get('sort');
+	// $: search = $page.url.searchParams.get('search');
 
 	onMount(() => {
 		setTimeout(() => {
@@ -112,8 +111,10 @@
 			</div>
 		</div>
 	</form>
-
-	<div
+	<div class="container mx-auto py-10 bg-secondary w-4/5">
+		<DataTable data={data.students} />
+	</div>
+	<!-- <div 
 		class=" w-4/5 h-16 mx-auto flex justify-center items-center rounded-md rounded-b-none bg-secondary"
 	>
 		<Input
@@ -199,14 +200,5 @@
 				</Table.Row>
 			{/each}
 		</Table.Body>
-	</Table.Root>
-</main> -->
-
-<script lang="ts">
-	import DataTable from '$lib/components/Datatable/data-table.svelte';
-	export let data;
-</script>
-
-<div class="container mx-auto py-10">
-	<DataTable {data} />
-</div>
+	</Table.Root>-->
+</main>

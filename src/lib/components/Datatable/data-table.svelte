@@ -9,7 +9,7 @@
 		addSortBy,
 		addTableFilter
 	} from 'svelte-headless-table/plugins';
-	import type { SelectStudent } from '$lib/server/schema';
+	import type { SelectStudent } from '$lib/database/schema.js';
 	import {
 		DataTableCheckbox,
 		DataTableColumnHeader,
@@ -67,8 +67,25 @@
 		}),
 		table.column({
 			accessor: 'rollNumber',
-			header: 'Student RollNumber'
+			header: 'Student RollNumber',
+			id: 'rollNumber',
+			plugins: {
+				colFilter: {
+					fn: ({ filterValue, value }) => {
+						if (filterValue.length === 0) return true;
+						if (!Array.isArray(filterValue) || typeof value !== 'string') return true;
+						return filterValue.some((filter) => {
+							return value.includes(filter);
+						});
+					},
+					initialFilterValue: [],
+					render: ({ filterValue }) => {
+						return get(filterValue);
+					}
+				}
+			}
 		}),
+
 		table.column({
 			accessor: 'name',
 			header: 'Student Name',
@@ -76,7 +93,7 @@
 			// cell: ({ value, row }) => {
 			// 	if (row.isData()) {
 			// 		return createRender(DataTableTitleCell, {
-			// 			value,
+			// 			value
 			// 			// labelValue: row.original.label,
 			// 		});
 			// 	}
@@ -86,7 +103,7 @@
 		table.column({
 			accessor: 'marks',
 			header: 'Student Marks',
-
+			id: 'marks',
 			// cell: ({ value }) => {
 			// 	return createRender(DataTableStatusCell, {
 			// 		value,
@@ -110,8 +127,8 @@
 		}),
 		table.column({
 			accessor: 'email',
-
 			header: 'Student EmailId',
+			id: 'email',
 			// cell: ({ value }) => {
 			// 	return createRender(DataTablePriorityCell, {
 			// 		value,

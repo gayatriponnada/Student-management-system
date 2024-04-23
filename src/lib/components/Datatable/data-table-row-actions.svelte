@@ -1,7 +1,8 @@
 <script lang="ts">
 	import DotsHorizontal from 'svelte-radix/DotsHorizontal.svelte';
+	// import Delete from './routes/student_data/components/delete.svelte';
 	// import { labels } from "../(data)/data.js";
-	import { type SelectStudent } from '$lib/server/schema';
+	import { type SelectStudent } from '$lib/database/schema';
 	import { Button } from '$ui/button/index.js';
 	import * as DropdownMenu from '$ui/dropdown-menu/index.js';
 
@@ -21,26 +22,26 @@
 		</Button>
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content class="w-[160px]" align="end">
-		<DropdownMenu.Item>Edit</DropdownMenu.Item>
+		<!-- <DropdownMenu.Item>Edit</DropdownMenu.Item>
 		<DropdownMenu.Item>Make a copy</DropdownMenu.Item>
 		<DropdownMenu.Item>Favorite</DropdownMenu.Item>
-		<DropdownMenu.Separator />
-		<DropdownMenu.Sub>
-			<DropdownMenu.SubTrigger>Labels</DropdownMenu.SubTrigger>
+		<DropdownMenu.Separator /> -->
+		<!-- <DropdownMenu.Sub> -->
+		<!-- <DropdownMenu.SubTrigger>Labels</DropdownMenu.SubTrigger>
 			<DropdownMenu.SubContent>
-				<!-- <DropdownMenu.RadioGroup value={task.label}>
+				<DropdownMenu.RadioGroup value={task.label}>
 					{#each labels as label}
 						<DropdownMenu.RadioItem value={label.value}>
 							{label.label}
 						</DropdownMenu.RadioItem>
 					{/each}
-				</DropdownMenu.RadioGroup> -->
+				</DropdownMenu.RadioGroup>
 			</DropdownMenu.SubContent>
 		</DropdownMenu.Sub>
-		<DropdownMenu.Separator />
+		<DropdownMenu.Separator /> -->
 		<DropdownMenu.Item>
 			Delete
-			<DropdownMenu.Shortcut>⌘⌫</DropdownMenu.Shortcut>
+			<DropdownMenu.Shortcut>Delete</DropdownMenu.Shortcut>
 		</DropdownMenu.Item>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

@@ -1,9 +1,9 @@
-import { db } from "$lib/server";
+import { db } from "$lib/database";
 import { asc, desc } from 'drizzle-orm';
 import { eq } from 'drizzle-orm';
-import { student } from "$lib/server/schema";
+import { student } from "$lib/database/schema";
 import type { PageServerLoad, Actions } from "./$types";
-
+// import type {  } from "./$types";
 export const load = (async ({ url }) => {
 	const sort = url.searchParams.get('sort');
 	const search = url.searchParams.get('search');

@@ -4,7 +4,7 @@
 	import ArrowUp from 'svelte-radix/ArrowUp.svelte';
 	import CaretSort from 'svelte-radix/CaretSort.svelte';
 	import type { TableViewModel } from 'svelte-headless-table';
-	import type { SelectStudent } from '$lib/server/schema';
+	import type { SelectStudent } from '$lib/database/schema';
 	import { cn } from '$lib/utils.js';
 	import { Button } from '$ui/button/index.js';
 	import * as DropdownMenu from '$ui/dropdown-menu/index.js';

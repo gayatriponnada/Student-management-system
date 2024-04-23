@@ -4,7 +4,7 @@
 	import DoubleArrowRight from 'svelte-radix/DoubleArrowRight.svelte';
 	import DoubleArrowLeft from 'svelte-radix/DoubleArrowLeft.svelte';
 	import type { TableViewModel } from 'svelte-headless-table';
-	import type { SelectStudent } from '$lib/server/schema';
+	import type { SelectStudent } from '$lib/database/schema';
 	import * as Select from '$ui/select/index.js';
 	import { Button } from '$ui/button/index.js';
 

@@ -3,7 +3,7 @@
 	import Cross2 from 'svelte-radix/Cross2.svelte';
 	import type { Writable } from 'svelte/store';
 
-	import type { SelectStudent } from '$lib/server/schema';
+	import type { SelectStudent } from '$lib/database/schema.js';
 	import { DataTableFacetedFilter, DataTableViewOptions } from './index.js';
 	import Button from '$ui/button/button.svelte';
 	import { Input } from '$ui/input/index.js';
@@ -33,16 +33,16 @@
 		filterValue: Writable<string>;
 	} = pluginStates.filter;
 
-	const {
-		filterValues
-	}: {
-		filterValues: Writable<{
-			status: string[];
-			priority: string[];
-		}>;
-	} = pluginStates.colFilter;
+	// const {
+	// 	filterValues
+	// }: {
+	// 	filterValues: Writable<{
+	// 		status: string[];
+	// 		priority: string[];
+	// 	}>;
+	// } = pluginStates.colFilter;
 
-	$: showReset = Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0);
+	// $: showReset = Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0);
 </script>
 
 <div class="flex items-center justify-between">
@@ -53,8 +53,8 @@
 			type="search"
 			bind:value={$filterValue}
 		/>
-
-		<!-- <DataTableFacetedFilter
+		<!-- 
+		<DataTableFacetedFilter
 			bind:filterValues={$filterValues.status}
 			title="Status"
 			options={statuses}
@@ -66,7 +66,7 @@
 			options={priorities}
 			counts={counts.priority}
 		/> -->
-		{#if showReset}
+		<!-- {#if showReset}
 			<Button
 				on:click={() => {
 					$filterValue = '';
@@ -79,7 +79,7 @@
 				Reset
 				<Cross2 class="ml-2 h-4 w-4" />
 			</Button>
-		{/if}
+		{/if}-->
 	</div>
 
 	<DataTableViewOptions {tableModel} />
