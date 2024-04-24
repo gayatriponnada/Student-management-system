@@ -89,7 +89,7 @@
 		table.column({
 			accessor: 'name',
 			header: 'Student Name',
-			id: 'title'
+			id: 'name'
 			// cell: ({ value, row }) => {
 			// 	if (row.isData()) {
 			// 		return createRender(DataTableTitleCell, {

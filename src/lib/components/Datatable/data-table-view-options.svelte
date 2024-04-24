@@ -21,7 +21,7 @@
 	const hidableCols = ['rollNumber', 'name', 'marks', 'email'];
 </script>
 
-<!-- <DropdownMenu.Root>
+<DropdownMenu.Root>
 	<DropdownMenu.Trigger asChild let:builder>
 		<Button variant="outline" size="sm" class="ml-auto hidden h-8 lg:flex" builders={[builder]}>
 			<MixerHorizontal class="mr-2 h-4 w-4" />
@@ -42,4 +42,4 @@
 			{/if}
 		{/each}
 	</DropdownMenu.Content>
-</DropdownMenu.Root> -->
+</DropdownMenu.Root>

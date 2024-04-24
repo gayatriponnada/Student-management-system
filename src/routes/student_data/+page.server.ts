@@ -60,12 +60,18 @@ export const actions = {
 		const marks = parseInt(data.get('number') as string);
 		const email = data.get('email') as string;
 		const emailDuplicates = await db.select().from(student).where(eq(student.email, email));
+		const rollNumberDuplicates = await db.select().from(student).where(eq(student.rollNumber, rollNumber));
 		if (emailDuplicates.length > 0) {
 			return {
 				message: "Email already exists"
 			};
 		}
+		if (rollNumberDuplicates.length > 0) {
 
+			return {
+				msg: "Roll Number already exists"
+			};
+		}
 		await db.insert(student).values({
 			rollNumber,
 			name,

@@ -18,30 +18,42 @@
 	let nameError = '';
 	let marksError = '';
 	const nameRegex = /^[A-Za-z]+$/;
-
 	let emailError = form?.message || '';
+	let rollNumberError = form?.msg || '';
+
 	// $: sort = $page.url.searchParams.get('sort');
 	// $: search = $page.url.searchParams.get('search');
 
 	onMount(() => {
 		setTimeout(() => {
 			emailError = '';
+			rollNumberError = '';
 		}, 3000);
 	});
 </script>
 
 <main class=" mt-5 flex flex-col gap-10 w-[90]">
 	<form action="?/add" method="post">
-		<div class=" mx-auto bg-secondary flex items-center rounded-md h-20 w-4/5">
-			<div class="grid grid-cols-6 gap-2 px-5">
-				<Input
-					type="text"
-					name="rollNumber"
-					placeholder="Student RollNumber"
-					required
-					title="Please fill the student id"
-				/>
-
+		<div class=" mx-auto bg-secondary flex items-center rounded-md h-auto w-4/5">
+			<div class="grid grid-cols-5 gap-7 px-10">
+				<div>
+					<Input
+						class={cn(rollNumberError && ' text-destructive border-destructive')}
+						type="text"
+						name="rollNumber"
+						placeholder="Student RollNumber"
+						required
+						title="Please fill the student id"
+						on:input={(e) => {
+							if (e.currentTarget.value.length <= 0) {
+								rollNumberError = 'Please enter the valid roll number';
+							} else {
+								rollNumberError = '';
+							}
+						}}
+					/>
+					<p class="text-sm text-destructive h-auto">{rollNumberError}</p>
+				</div>
 				<div>
 					<Input
 						class={cn(nameError && ' text-destructive border-destructive')}
@@ -51,8 +63,14 @@
 						required
 						title="Please enter the student name"
 						on:input={(e) => {
-							if (e.currentTarget.value.length < 6 || !nameRegex.test(e.currentTarget.value)) {
-								nameError = 'Should contain at least 6 characters and enter the valid name';
+							let capitalize = /^[A-Z]/;
+							if (!capitalize.test(e.currentTarget.value)) {
+								nameError = 'First letter should be capital';
+							} else if (
+								e.currentTarget.value.length < 6 ||
+								!nameRegex.test(e.currentTarget.value)
+							) {
+								nameError = 'Should contain at least 6 characters ';
 							} else {
 								nameError = '';
 							}
@@ -88,8 +106,9 @@
 						required
 						title="Please fill the valid email address"
 						on:input={(e) => {
+							let lowerLetters = /[a-z]/;
 							const email = e.currentTarget.value;
-							if (email.length <= 2) {
+							if (!lowerLetters.test(email)) {
 								emailError = 'Please enter the valid email ID';
 							} else {
 								emailError = '';
@@ -100,13 +119,6 @@
 				</div>
 
 				<Button class="bg-primary text-accent " type="submit" variant="ghost">Create Student</Button
-				>
-
-				<Button
-					class=" flex  bg-primary text-accent"
-					type="submit"
-					formaction="?/delete_all"
-					variant="ghost">Delete All</Button
 				>
 			</div>
 		</div>
