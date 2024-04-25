@@ -6,10 +6,18 @@ export const student = sqliteTable('student', {
 	id: text('id')
 		.primaryKey()
 		.$defaultFn(() => createId()),
-	rollNumber: text('rollnumber').notNull(),
+	rollNumber: integer('rollnumber').notNull(),
 	name: text('title').notNull(),
 	marks: integer("marks").notNull(),
-	email: text('email').notNull()
+	email: text('email').notNull(),
+	subjects: text("subjects").notNull(),
+	// MachineLearning: text("ml"),
+	// CyberSecurity: text("cs"),
+	// SoftwareEngineering: text("se"),
+	// DataMining: text("dm"),
+	// DataCommunication: text("dc"),
+
+
 
 });
 export const login = sqliteTable('login', {

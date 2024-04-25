@@ -1,16 +1,16 @@
-<!-- <script lang="ts">
-	import { statuses } from "../(data)/data.js";
+<script lang="ts">
+	import { statuses } from './(data)/data';
 
 	export let value: string;
-	const status = statuses.find((status) => status.value === value);
-	const Icon = status?.icon;
+	const subjects = statuses.find((subjects) => subjects.value === value);
+	// const Icon = status?.icon;
 </script>
 
-{#if status}
+{#if subjects}
 	<div class="flex w-[100px] items-center">
-		{#if Icon}
+		<!-- {#if Icon}
 			<Icon class="mr-2 h-4 w-4 text-muted-foreground" />
-		{/if}
-		<span>{status.label}</span>
+		{/if} -->
+		<span>{subjects.label}</span>
 	</div>
-{/if} -->
+{/if}

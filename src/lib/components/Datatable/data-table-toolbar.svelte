@@ -2,7 +2,7 @@
 	import type { TableViewModel } from 'svelte-headless-table';
 	import Cross2 from 'svelte-radix/Cross2.svelte';
 	import type { Writable } from 'svelte/store';
-
+	import { statuses } from './(data)/data';
 	import type { SelectStudent } from '$lib/database/schema.js';
 	import { DataTableFacetedFilter, DataTableViewOptions } from './index.js';
 	import Button from '$ui/button/button.svelte';
@@ -11,20 +11,20 @@
 	export let tableModel: TableViewModel<SelectStudent>;
 	export let data: SelectStudent[];
 
-	// const counts = data.reduce<{
-	// 	status: { [index: string]: number };
-	// 	priority: { [index: string]: number };
-	// }>(
-	// 	(acc, { status, priority }) => {
-	// 		acc.status[status] = (acc.status[status] || 0) + 1;
-	// 		acc.priority[priority] = (acc.priority[priority] || 0) + 1;
-	// 		return acc;
-	// 	},
-	// 	{
-	// 		status: {},
-	// 		priority: {}
-	// 	}
-	// );
+	const counts = data.reduce<{
+		subjects: { [index: string]: number };
+		// priority: { [index: string]: number };
+	}>(
+		(acc, { subjects }) => {
+			acc.subjects[subjects] = (acc.subjects[subjects] || 0) + 1;
+			// acc.priority[priority] = (acc.priority[priority] || 0) + 1;
+			return acc;
+		},
+		{
+			subjects: {}
+			// priority: {}
+		}
+	);
 
 	const { pluginStates } = tableModel;
 	const {
@@ -33,16 +33,16 @@
 		filterValue: Writable<string>;
 	} = pluginStates.filter;
 
-	// const {
-	// 	filterValues
-	// }: {
-	// 	filterValues: Writable<{
-	// 		status: string[];
-	// 		priority: string[];
-	// 	}>;
-	// } = pluginStates.colFilter;
+	const {
+		filterValues
+	}: {
+		filterValues: Writable<{
+			subjects: string[];
+			// priority: string[];
+		}>;
+	} = pluginStates.colFilter;
 
-	// $: showReset = Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0);
+	$: showReset = Object.values({ ...$filterValues, $filterValue }).some((v) => v.length > 0);
 </script>
 
 <div class="flex items-center justify-between">
@@ -53,25 +53,25 @@
 			type="search"
 			bind:value={$filterValue}
 		/>
-		<!-- 
+
 		<DataTableFacetedFilter
-			bind:filterValues={$filterValues.status}
-			title="Status"
+			bind:filterValues={$filterValues.subjects}
+			title="Subjects"
 			options={statuses}
-			counts={counts.status}
+			counts={counts.subjects}
 		/>
-		<DataTableFacetedFilter
+		<!-----<DataTableFacetedFilter
 			bind:filterValues={$filterValues.priority}
 			title="Priority"
 			options={priorities}
 			counts={counts.priority}
 		/> -->
-		<!-- {#if showReset}
+		{#if showReset}
 			<Button
 				on:click={() => {
 					$filterValue = '';
-					$filterValues.status = [];
-					$filterValues.priority = [];
+					$filterValues.subjects = [];
+					// $filterValues.priority = [];
 				}}
 				variant="ghost"
 				class="h-8 px-2 lg:px-3"
@@ -79,7 +79,7 @@
 				Reset
 				<Cross2 class="ml-2 h-4 w-4" />
 			</Button>
-		{/if}-->
+		{/if}
 	</div>
 
 	<DataTableViewOptions {tableModel} />

@@ -104,11 +104,36 @@
 			accessor: 'marks',
 			header: 'Student Marks',
 			id: 'marks',
-			// cell: ({ value }) => {
-			// 	return createRender(DataTableStatusCell, {
-			// 		value,
-			// 	});
-			// },
+			//cell: ({ value }) => {
+			//	return createRender(DataTableStatusCell, {
+			//	value
+			//	});
+			//},
+			plugins: {
+				colFilter: {
+					fn: ({ filterValue, value }) => {
+						if (filterValue.length === 0) return true;
+						if (!Array.isArray(filterValue) || typeof value !== 'string') return true;
+						return filterValue.some((filter) => {
+							return value.includes(filter);
+						});
+					},
+					initialFilterValue: [],
+					render: ({ filterValue }) => {
+						return get(filterValue);
+					}
+				}
+			}
+		}),
+		table.column({
+			accessor: 'subjects',
+			header: 'Subjects',
+			id: 'subjects',
+			//cell: ({ value }) => {
+			//	return createRender(DataTableStatusCell, {
+			//	value
+			//	});
+			//},
 			plugins: {
 				colFilter: {
 					fn: ({ filterValue, value }) => {

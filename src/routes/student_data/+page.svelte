@@ -1,5 +1,6 @@
 <script lang="ts">
 	import DataTable from '$lib/components/Datatable/data-table.svelte';
+	import * as Select from '$lib/components/ui/select';
 	import { page } from '$app/stores';
 	import { Button } from '$ui/button/index.js';
 	import { Input } from '$ui/input/index.js';
@@ -32,10 +33,14 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Student Data Management</title></svelte:head
+>
+
 <main class=" mt-5 flex flex-col gap-10 w-[90]">
 	<form action="?/add" method="post">
-		<div class=" mx-auto bg-secondary flex items-center rounded-md h-auto w-4/5">
-			<div class="grid grid-cols-5 gap-7 px-10">
+		<div class=" mx-auto flex items-center rounded-md h-20 w-4/5">
+			<div class="grid grid-cols-6 bg-secondary gap-3 px-7 py-5">
 				<div>
 					<Input
 						class={cn(rollNumberError && ' text-destructive border-destructive')}
@@ -77,6 +82,20 @@
 						}}
 					/>
 					<p class=" text-sm text-destructive">{nameError}</p>
+				</div>
+				<div>
+					<Select.Root>
+						<Select.Trigger name="subjects">
+							<Select.Value placeholder="Select a Subject" />
+						</Select.Trigger>
+						<Select.Content>
+							<Select.Item value="ml">Machine Learning</Select.Item>
+							<Select.Item value="cs">Cyber Security</Select.Item>
+							<Select.Item value="dm">Data mining</Select.Item>
+							<Select.Item value="se">Software Engineering</Select.Item>
+							<Select.Item value="dc">Data Communication</Select.Item>
+						</Select.Content>
+					</Select.Root>
 				</div>
 
 				<div>
@@ -123,7 +142,7 @@
 			</div>
 		</div>
 	</form>
-	<div class="container mx-auto py-10 bg-secondary w-4/5">
+	<div class="container mx-auto py-10 w-4/5">
 		<DataTable data={data.students} />
 	</div>
 	<!-- <div 

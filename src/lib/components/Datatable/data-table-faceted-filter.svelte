@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PlusCircled from 'svelte-radix/PlusCircled.svelte';
 	import Check from 'svelte-radix/Check.svelte';
-
+	import { statuses } from './(data)/data';
 	import * as Command from '$ui/command/index.js';
 	import * as Popover from '$ui/popover/index.js';
 	import { Button } from '$ui/button/index.js';
@@ -11,8 +11,8 @@
 
 	export let filterValues: string[] = [];
 	export let title: string;
-	// export let options = [] as typeof statuses;
-	// export let counts: { [index: string]: number } = {};
+	export let options = [] as typeof statuses;
+	export let counts: { [index: string]: number } = {};
 
 	let open = false;
 
@@ -57,9 +57,8 @@
 			<Command.Input placeholder={title} />
 			<Command.List>
 				<Command.Empty>No results found.</Command.Empty>
-				<!-- <Command.Group>
+				<Command.Group>
 					{#each options as option}
-						{@const Icon = option.icon}
 						<Command.Item
 							value={option.value}
 							onSelect={(currentValue) => {
@@ -68,28 +67,25 @@
 						>
 							<div
 								class={cn(
-									"mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+									'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
 									filterValues.includes(option.value)
-										? "bg-primary text-primary-foreground"
-										: "opacity-50 [&_svg]:invisible"
+										? 'bg-primary text-primary-foreground'
+										: 'opacity-50 [&_svg]:invisible'
 								)}
 							>
-								<Check className={cn("h-4 w-4")} />
+								<Check className={cn('h-4 w-4')} />
 							</div>
-							<Icon class="mr-2 h-4 w-4 text-muted-foreground" />
 							<span>
 								{option.label}
 							</span>
 							{#if counts[option.value]}
-								<span
-									class="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs"
-								>
+								<span class="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs">
 									{counts[option.value]}
 								</span>
 							{/if}
 						</Command.Item>
 					{/each}
-				</Command.Group> -->
+				</Command.Group>
 				{#if filterValues.length > 0}
 					<Command.Separator />
 					<Command.Item

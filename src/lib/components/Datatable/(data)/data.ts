@@ -1,13 +1,13 @@
-import ArrowDown from "svelte-radix/ArrowDown.svelte";
+/*import ArrowDown from "svelte-radix/ArrowDown.svelte";
 import ArrowRight from "svelte-radix/ArrowRight.svelte";
 import ArrowUp from "svelte-radix/ArrowUp.svelte";
 import CheckCircled from "svelte-radix/CheckCircled.svelte";
 import Circle from "svelte-radix/Circle.svelte";
 import CrossCircled from "svelte-radix/CrossCircled.svelte";
 import QuestionMarkCircled from "svelte-radix/QuestionMarkCircled.svelte";
-import Stopwatch from "svelte-radix/Stopwatch.svelte";
+import Stopwatch from "svelte-radix/Stopwatch.svelte";*/
 
-export const labels = [
+/*export const labels = [
 	{
 		value: "bug",
 		label: "Bug",
@@ -20,37 +20,34 @@ export const labels = [
 		value: "documentation",
 		label: "Documentation",
 	},
-];
+];*/
 
 export const statuses = [
 	{
-		value: "backlog",
-		label: "Backlog",
-		icon: QuestionMarkCircled,
+		value: "Machine Learning",
+		label: "Machine Learning",
 	},
 	{
-		value: "todo",
-		label: "Todo",
-		icon: Circle,
+		value: "Cyber Security",
+		label: "Cyber Security",
 	},
 	{
-		value: "in progress",
-		label: "In Progress",
-		icon: Stopwatch,
+		value: "Software Engineering",
+		label: "Software Engineering",
+
 	},
 	{
-		value: "done",
-		label: "Done",
-		icon: CheckCircled,
+		value: "Data Mining",
+		label: "Data Mining",
 	},
 	{
-		value: "canceled",
-		label: "Canceled",
-		icon: CrossCircled,
+		value: "Data Communication",
+		label: "Data Communication",
+
 	},
 ];
 
-export const priorities = [
+/*export const priorities = [
 	{
 		label: "Low",
 		value: "low",
@@ -66,4 +63,4 @@ export const priorities = [
 		value: "high",
 		icon: ArrowUp,
 	},
-];
+];*/

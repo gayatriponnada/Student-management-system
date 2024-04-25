@@ -17,6 +17,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Student Login</title>
+</svelte:head>
+
 <div class="flex justify-center py-8">
 	<form method="post" class="flex items-center">
 		<div class="mx-auto my-auto">
