@@ -41,10 +41,7 @@
 		<DropdownMenu.Separator /> -->
 		<form action="?/delete" method="POST">
 			<Button variant="ghost" type="submit">
-				<DropdownMenu.Item>
-					Delete
-					<DropdownMenu.Shortcut>Delete</DropdownMenu.Shortcut>
-				</DropdownMenu.Item>
+				<DropdownMenu.Item>Delete</DropdownMenu.Item>
 			</Button>
 			<input type="text" name="rollNumber" value={row.rollNumber} hidden />
 		</form>

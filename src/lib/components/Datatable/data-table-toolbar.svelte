@@ -12,16 +12,16 @@
 	export let data: SelectStudent[];
 
 	const counts = data.reduce<{
-		subjects: { [index: string]: number };
+		subject: { [index: string]: number };
 		// priority: { [index: string]: number };
 	}>(
-		(acc, { subjects }) => {
-			acc.subjects[subjects] = (acc.subjects[subjects] || 0) + 1;
+		(acc, { subject }) => {
+			acc.subject[subject] = (acc.subject[subject] || 0) + 1;
 			// acc.priority[priority] = (acc.priority[priority] || 0) + 1;
 			return acc;
 		},
 		{
-			subjects: {}
+			subject: {}
 			// priority: {}
 		}
 	);
@@ -37,7 +37,7 @@
 		filterValues
 	}: {
 		filterValues: Writable<{
-			subjects: string[];
+			subject: string[];
 			// priority: string[];
 		}>;
 	} = pluginStates.colFilter;
@@ -48,17 +48,17 @@
 <div class="flex items-center justify-between">
 	<div class="flex flex-1 items-center space-x-2">
 		<Input
-			placeholder="Filter tasks..."
+			placeholder="Search"
 			class="h-8 w-[150px] lg:w-[250px]"
 			type="search"
 			bind:value={$filterValue}
 		/>
 
 		<DataTableFacetedFilter
-			bind:filterValues={$filterValues.subjects}
+			bind:filterValues={$filterValues.subject}
 			title="Subjects"
 			options={statuses}
-			counts={counts.subjects}
+			counts={counts.subject}
 		/>
 		<!-----<DataTableFacetedFilter
 			bind:filterValues={$filterValues.priority}
@@ -70,7 +70,7 @@
 			<Button
 				on:click={() => {
 					$filterValue = '';
-					$filterValues.subjects = [];
+					$filterValues.subject = [];
 					// $filterValues.priority = [];
 				}}
 				variant="ghost"

@@ -67,7 +67,7 @@
 		}),
 		table.column({
 			accessor: 'rollNumber',
-			header: 'Student RollNumber',
+			header: ' Roll Number',
 			id: 'rollNumber',
 			plugins: {
 				colFilter: {
@@ -88,7 +88,7 @@
 
 		table.column({
 			accessor: 'name',
-			header: 'Student Name',
+			header: ' Name',
 			id: 'name'
 			// cell: ({ value, row }) => {
 			// 	if (row.isData()) {
@@ -102,7 +102,7 @@
 		}),
 		table.column({
 			accessor: 'marks',
-			header: 'Student Marks',
+			header: ' Marks',
 			id: 'marks',
 			//cell: ({ value }) => {
 			//	return createRender(DataTableStatusCell, {
@@ -126,9 +126,9 @@
 			}
 		}),
 		table.column({
-			accessor: 'subjects',
-			header: 'Subjects',
-			id: 'subjects',
+			accessor: 'subject',
+			header: 'Subject',
+			id: 'subject',
 			//cell: ({ value }) => {
 			//	return createRender(DataTableStatusCell, {
 			//	value
@@ -152,7 +152,7 @@
 		}),
 		table.column({
 			accessor: 'email',
-			header: 'Student EmailId',
+			header: ' Email',
 			id: 'email',
 			// cell: ({ value }) => {
 			// 	return createRender(DataTablePriorityCell, {

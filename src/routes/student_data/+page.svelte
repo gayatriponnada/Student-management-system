@@ -1,5 +1,6 @@
 <script lang="ts">
 	import DataTable from '$lib/components/Datatable/data-table.svelte';
+	import DataForm from '$lib/components/Datatable/data-form.svelte';
 	import * as Select from '$lib/components/ui/select';
 	import { page } from '$app/stores';
 	import { Button } from '$ui/button/index.js';
@@ -84,18 +85,7 @@
 					<p class=" text-sm text-destructive">{nameError}</p>
 				</div>
 				<div>
-					<Select.Root>
-						<Select.Trigger name="subjects">
-							<Select.Value placeholder="Select a Subject" />
-						</Select.Trigger>
-						<Select.Content>
-							<Select.Item value="ml">Machine Learning</Select.Item>
-							<Select.Item value="cs">Cyber Security</Select.Item>
-							<Select.Item value="dm">Data mining</Select.Item>
-							<Select.Item value="se">Software Engineering</Select.Item>
-							<Select.Item value="dc">Data Communication</Select.Item>
-						</Select.Content>
-					</Select.Root>
+					<DataForm form={data.form} />
 				</div>
 
 				<div>
@@ -137,7 +127,7 @@
 					<p class=" text-sm text-destructive">{emailError}</p>
 				</div>
 
-				<Button class="bg-primary text-accent " type="submit" variant="ghost">Create Student</Button
+				<!-- <Button class="bg-primary text-accent " type="submit" variant="ghost">Create Student</Button -->
 				>
 			</div>
 		</div>
@@ -145,6 +135,7 @@
 	<div class="container mx-auto py-10 w-4/5">
 		<DataTable data={data.students} />
 	</div>
+
 	<!-- <div 
 		class=" w-4/5 h-16 mx-auto flex justify-center items-center rounded-md rounded-b-none bg-secondary"
 	>

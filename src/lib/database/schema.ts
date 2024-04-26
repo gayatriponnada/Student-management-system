@@ -10,13 +10,8 @@ export const student = sqliteTable('student', {
 	name: text('title').notNull(),
 	marks: integer("marks").notNull(),
 	email: text('email').notNull(),
-	subjects: text("subjects").notNull(),
-	// MachineLearning: text("ml"),
-	// CyberSecurity: text("cs"),
-	// SoftwareEngineering: text("se"),
-	// DataMining: text("dm"),
-	// DataCommunication: text("dc"),
-
+	subject: text("subject").notNull(),
+	// form_: superValidate(zod(studentform))
 
 
 });
