@@ -39,7 +39,7 @@
 >
 
 <main class=" mt-5 flex flex-col gap-10 w-[90]">
-	<form action="?/add" method="post">
+	<!-- <form action="?/add" method="post">
 		<div class=" mx-auto flex items-center rounded-md h-20 w-4/5">
 			<div class="grid grid-cols-6 bg-secondary gap-3 px-7 py-5">
 				<div>
@@ -84,9 +84,7 @@
 					/>
 					<p class=" text-sm text-destructive">{nameError}</p>
 				</div>
-				<div>
-					<DataForm form={data.form} />
-				</div>
+			
 
 				<div>
 					<Input
@@ -127,11 +125,14 @@
 					<p class=" text-sm text-destructive">{emailError}</p>
 				</div>
 
-				<!-- <Button class="bg-primary text-accent " type="submit" variant="ghost">Create Student</Button -->
+				<Button class="bg-primary text-accent " type="submit" variant="ghost">Create Student</Button
 				>
 			</div>
 		</div>
-	</form>
+	</form> -->
+	<div>
+		<DataForm form={data.form} />
+	</div>
 	<div class="container mx-auto py-10 w-4/5">
 		<DataTable data={data.students} />
 	</div>

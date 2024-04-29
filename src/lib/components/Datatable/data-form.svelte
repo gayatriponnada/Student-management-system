@@ -3,8 +3,8 @@
 	import { Input } from '$lib/components/ui/input';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { studentform, type Studentschema } from '$lib/schemas';
+	import { type SelectStudent } from '$lib/database/schema';
 	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
-	import { page } from '$app/stores';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import FormButton from '$ui/form/form-button.svelte';
 
@@ -24,8 +24,8 @@
 		: undefined;
 </script>
 
-<form action="?/formadd" method="POST" use:enhance>
-	<!---<Form.Field {form} name="rollNumber">
+<form action="?/formadd" method="POST" use:enhance class="grid grid-cols-5 gap-2 p-5 bg-muted">
+	<Form.Field {form} name="rollNumber">
 		<Form.Control let:attrs>
 			<Input {...attrs} bind:value={$formData.rollNumber} />
 		</Form.Control>
@@ -48,7 +48,7 @@
 			<Input {...attrs} bind:value={$formData.email} />
 		</Form.Control>
 		<Form.FieldErrors />
-	</Form.Field>-->
+	</Form.Field>
 	<Form.Field {form} name="subject">
 		<Form.Control let:attrs>
 			<Select.Root
@@ -70,7 +70,7 @@
 			</Select.Root>
 			<input bind:value={$formData.subject} name={attrs.name} />
 		</Form.Control>
-		<Form.Button type="submit">Create Student</Form.Button>
 		<Form.FieldErrors />
 	</Form.Field>
+	<Form.Button type="submit">Create Button</Form.Button>
 </form>
