@@ -45,7 +45,7 @@ export const actions = {
 				message: "Roll Number already exists"
 			});
 		}
-		console.log("Form data: ", Object.fromEntries(data));
+		// console.log("Form data: ", Object.fromEntries(data));
 		await db.insert(student).values({
 			rollNumber: parseInt(rollNumber),
 			name,
@@ -219,42 +219,3 @@ export const actions = {
 
 
 
-// const sort = url.searchParams.get('sort');
-// const search = url.searchParams.get('search');
-
-// // http://localhost:5173/student_data?sort=desc:marks&search=gayam
-
-// // sort -> desc:marks
-// // search -> gayam
-
-// if (sort) {
-// 	const [type, column] = sort.split(':');
-// 	// type -> desc, column -> marks
-// 	if (column == "marks") {
-// 		const students = await db.select().from(student).orderBy(type == "desc" ? desc(student.marks) : asc(student.marks));
-// 		return {
-// 			students
-// 		};
-// 	}
-// 	// type -> desc, column -> name
-// 	if (column == 'name') {
-// 		const students = await db.select().from(student).orderBy(type == "desc" ? desc(student.name) : asc(student.name));
-// 		return {
-// 			students
-// 		};
-// 	}
-// 	// type -> desc, column -> email
-// 	if (column == 'email') {
-// 		const students = await db.select().from(student).orderBy(type == "desc" ? desc(student.email) : asc(student.email));
-// 		return {
-// 			students
-// 		};
-// 	}
-// }
-
-// console.log("Search: ", search);
-// // search -> gayam
-// if (search) {
-// 	const students = await db.select().from(student).where(eq(student.name, search));
-// 	return { students };
-// }

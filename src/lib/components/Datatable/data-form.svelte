@@ -68,7 +68,7 @@
 					<Select.Item value="Data Communication" label="Data Communication" />
 				</Select.Content>
 			</Select.Root>
-			<input bind:value={$formData.subject} name={attrs.name} />
+			<input bind:value={$formData.subject} name={attrs.name} hidden />
 		</Form.Control>
 		<Form.FieldErrors />
 	</Form.Field>
